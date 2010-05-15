@@ -1,0 +1,9 @@
+Here's what you need to do to use GrammaFone:
+
+ 1. Create a new MySQL Database.  Something like 'grammafone'
+ 2. Copy includes/config.dist.php to includes/config.php
+ 3. Edit the includes/config.php file to fill in the database parameters
+ 4. Point your browser to the install page (ex. http://localhost/grammafone/install.php)
+ 5. Follow the steps to install.
+ 
+

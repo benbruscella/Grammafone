@@ -1,0 +1,19 @@
+*Installation Procedure for mp3act*
+The goal of mp3act is to make listening to music as easy as possible.
+The installation of mp3act is just as easy. 
+Here's what you do:
+
+* Download a copy mp3act
+* Uncompress the archive into a new directory in your webserver root
+* Create a new MySQL Database.  Something like 'mp3act'
+* Copy includes/mp3act_config.dist.php to includes/mp3act_config.php
+* Edit the mp3act_config.php file in the includes/ directory and fill in the database parameters
+* Point your browser to the install page (ex. http://yourserver.com/mp3act/install.php)
+* Follow the steps to install.
+* You need to enter a path for your mp3 player and your PHP CLI binary for Jukebox mode to work.
+* Thats It!
+
+*You may also need to do the following*
+* set the permissions of your audio device to be writable by the apache user
+* add your apache user to the audio group
+* set the allow_url_fopen = On in your php.ini file

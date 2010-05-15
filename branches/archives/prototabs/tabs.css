@@ -1,0 +1,52 @@
+/*
+	http://exploding-boy.com/images/cssmenus2/menus.html
+*/
+
+.tabs10 {
+	width:100%;
+	font-size:93%;
+	line-height:normal;
+}
+.tabs10 ul {
+	margin:0;
+	padding:10px 10px 0 0;
+	list-style:none;
+}
+.tabs10 li {
+	display:inline;
+	margin:0;
+	padding:0;
+}
+.tabs10 a {
+	float:left;
+	background:url("tableft10.gif") no-repeat left top;
+	margin:0;
+	padding:0 0 0 4px;
+	text-decoration:none;	
+	background-position:0% -42px;
+}
+.tabs10 a span {
+	font: bold 10px/1.5em Verdana;
+	display:block;
+	float:left;
+	background:url("tabright10.gif") no-repeat right top;
+	padding:5px 15px 4px 6px;
+	color:#FFF;	
+	background-position:100% -42px;
+}
+
+#tabs10 a:hover span {
+	color:#FFF;
+}
+.tabs10 a:hover, .tabs10 .selected a  {
+	background-position:0% 0px;
+}
+.tabs10 a:hover span, .tabs10 .selected a span  {
+	background-position:100% 0px;
+}
+
+.panel{
+	border:1px solid #bcd2e6;
+	padding:10px;
+	width:400px;
+}

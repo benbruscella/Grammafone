@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gfnet", "gfnet\gfnet.csproj", "{B5EC6F36-8109-43C0-851D-6D37660661C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gfnet.Tests", "gfnet.Tests\gfnet.Tests.csproj", "{B73FC3AC-4A93-4343-B62F-952E4F9412BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5EC6F36-8109-43C0-851D-6D37660661C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5EC6F36-8109-43C0-851D-6D37660661C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5EC6F36-8109-43C0-851D-6D37660661C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5EC6F36-8109-43C0-851D-6D37660661C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73FC3AC-4A93-4343-B62F-952E4F9412BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73FC3AC-4A93-4343-B62F-952E4F9412BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73FC3AC-4A93-4343-B62F-952E4F9412BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73FC3AC-4A93-4343-B62F-952E4F9412BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+**************************************************
+* mp3act music server Changelog
+* Author: Jon Buda
+* Homepage: http://www.mp3act.net
+*
+**************************************************
+
+08.02.2005
+Version 1.2
+* AudioScrobbler support added for Jukebox and Streaming modes
+* HTTPS automatic server detection
+* Improved handling of playing jukebox mode and stop music, no longer uses killall
+* Admins can now delete public playlists
+* Fixed Jukebox issues with directories containing quotes
+* Added security to install.php, no longer generates new Admin password once mp3act is installed
+* Other small little things
+
+07.21.2005
+Version 1.1
+* Admins can now add users from the Admin Menu
+* Song title problem when streaming with WinAmp fixed
+* Relaxed ID3 requirements for importing (no need for genre or track #)
+* Fixed problems when importing music directory with ' or "
+* Statistics when playing random mixes are fixed
+* Fixed bug when trying to stream a random mix without choosing items to play
+* Several fixes to variable syntax warnings
+* Probably a few other small things I've forgotten about  
+
+06.06.2005
+Version 1.0 - Initial mp3act release

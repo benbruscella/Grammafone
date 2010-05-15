@@ -1,0 +1,32 @@
+<?php 
+
+// Set the MySQL Information
+$GLOBALS['db_server']   = "localhost";
+$GLOBALS['db_name']     = "grammafone";
+$GLOBALS['db_user']     = "";
+$GLOBALS['db_password'] = "";
+
+// Application Name
+define('NAME', 'GrammaFone');
+
+// ROOT
+define('ROOT',$GLOBALS['root']);
+
+// Enable/Disable logging to LOGFILE
+define('LOG_TO_FILE', true);
+
+// File to log messages to if enabled
+define('LOGFILE', '/tmp/grammafone.log');
+
+// Request URL
+define('URL','http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']);     
+
+// Other important information - DO NOT EDIT
+$GLOBALS['server_title'] = "grammafone music system";
+$GLOBALS['http_protocol'] = 'http' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 's' : '');
+$GLOBALS['http_server'] = $_SERVER['HTTP_HOST'];
+$GLOBALS['http_url'] = $GLOBALS['http_protocol']."://".$GLOBALS['http_server'];
+$GLOBALS['absolute_path'] = dirname($_SERVER['SCRIPT_FILENAME']);
+$GLOBALS['uri_path'] = (dirname($_SERVER['SCRIPT_NAME']) != '/' ? dirname($_SERVER['SCRIPT_NAME']) : ""); 
+$GLOBALS['root'] = $GLOBALS['http_url'] . $GLOBALS['uri_path'];
+

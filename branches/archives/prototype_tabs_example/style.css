@@ -1,0 +1,53 @@
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin: 0;
+}
+#container {
+	margin: 0 auto;
+	width:1024px;
+}
+.menu {
+	width:75px;
+	margin-right:10px;
+	padding:4px;
+	text-align:center;
+	float:left;
+	cursor:pointer;
+	border:1px solid #ccc;
+	border-bottom:0;
+}
+#banner {
+	height:150px;
+	clear:both;
+	border:1px solid #ccc;
+	background-color: #1b5790;  
+}
+#content {
+	clear:both;
+	border:1px solid #ccc;
+	width: 700px;
+	float: left;
+}
+#footer {
+	clear: both;
+	border:1px solid #ccc;
+	width: 1024px;
+	margin: 0 auto;
+}
+#player {
+	float:right;
+	margin: 0;
+	border:1px solid #ccc;
+}
+#load {
+	position:absolute;
+	left:0;
+	top:0;
+	width:150px;
+	height:40px;
+	background-color:red;
+	color:white;
+	display:none;
+}
+

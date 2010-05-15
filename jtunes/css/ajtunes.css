@@ -1,0 +1,98 @@
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#pbarCompleted {
+	background-image:url('../images/ajquery_progress_background.jpg');
+	width:0px;
+	height:7px;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#pbarLeft {
+	/*background-color:#4F9AC1;*/
+	width:150px;
+	height:7px;
+	position:absolute;
+	top:0;
+	right:0;
+}
+#pbarLeftStatus, #pbarCompletedStatus {
+	text-align:center;
+	color: #333333;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight:normal;
+	z-index:100;
+	top:4px;
+}
+#pbarContainer {
+	position:relative;
+	width:150px;
+	height:7px;
+	border:solid 1px #404040;
+}
+.songTitle {
+	text-align:center;
+	color: #333333;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight:normal;
+}
+.playlistTitle{
+	color: #333333;
+	font-weight:bold;
+	font-size: 12px;
+	font-family: Arial;
+}
+.playlistCell {
+	border-right:1px solid #DDDDDD;
+	border-bottom:0px solid #DDDDDD;
+	padding-left:3px;
+	padding-right:3px;
+	height:20px;
+}
+.evenRow {
+	background-color:#CCCCCC;
+}
+.selectedRow {
+	background-color:#3D80DF;
+	color:#FFFFFF;
+	background-image:url('../images/ajtunes_playlist_title_background.jpg');
+}
+
+.playlistColumn {
+	font-weight:bold;
+	color: #333333;
+	border-right:1px solid #BBBBBB;
+	border-bottom:1px solid #999999;
+	border-left:1px solid #EEEEEE;
+	background-color:#BBBBBB;
+	background-image:url('../images/ajtunes_playlist_col_back.jpg');
+	background-repeat:repeat-x;
+	padding-left:3px;
+	padding-right:3px;
+}
+.nowPlaying {
+	font-weight:bold;
+	color: #CCCCCC;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	background-color:#FFFFFF;
+	font-size: 24px;
+}
+
+#nowPlayingBox {
+	background-color:#D1D7E2;
+	height:260px;
+	width:250px;
+	border-right:1px solid #404040;
+	position:absolute;
+ }
+ 

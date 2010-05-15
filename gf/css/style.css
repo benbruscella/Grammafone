@@ -1,0 +1,137 @@
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+ 
+#controls {
+	width:100%;
+ 	background-image:url('../images/control_bg.jpg');
+ 	padding-left:50px;
+ 	height:71px;
+}
+#controls span{
+	display:block;
+	float:left;
+}
+.previous{
+	background-image:url('../images/previous.jpg');
+	min-height:70px;
+	width:35px;
+} 
+.previous-disabled{
+	background-image:url('../images/previous_disabled.jpg');
+	min-height:70px;
+	width:35px;
+} 
+.play{
+	background-image:url('../images/play.jpg');
+	min-height:70px;
+	width:42px;
+}
+.pause{
+	background-image:url('../images/pause.jpg');
+	min-height:70px;
+	width:42px;
+}
+.next{
+	background-image:url('../images/next_disabled.jpg');
+	min-height:70px;
+	width:35px;
+}
+.next-disabled{
+	background-image:url('../images/next_disabled.jpg');
+	min-height:70px;
+	width:35px;
+}
+#volume{
+	width:70px;
+	min-height:70px;
+	background-image:url('../images/volume_bar.jpg');
+}
+#volume-min{
+	background-image:url('../images/volume_min.jpg');
+	min-height:70px;
+	width:30px;
+}
+#volume-max{
+	background-image:url('../images/volume_max.jpg');
+	min-height:70px;
+	width:30px;
+}
+#progress-left{
+	background-image:url('../images/progress_left.jpg');
+	min-height:70px;
+	width:11px;
+}
+#progress{
+	background-image:url('../images/progress_main.jpg');
+	min-height:70px;
+	background-repeat:repeat-x;
+}
+#progress-right{
+	background-image:url('../images/progress_right.jpg');
+	min-height:70px;
+	width:11px;
+}
+#playlist {
+	border:1px solid #CCC;
+	margin: 0px auto;
+	width:60%;
+	height:400px;
+	overflow:auto;
+	margin-top:40px;
+}
+ul#songs{
+	list-style: none;
+	margin:0px;
+	padding:20px;
+}
+ul#songs li{
+	padding:2px;
+}
+ul#songs li:hover{
+	background-color: #CCC;
+	
+}
+
+
+
+#pbarContainer {
+	position:relative;
+	width:150px;
+	min-height:7px;
+	border:solid 1px #404040;
+	margin-top:30px;
+}
+#pbarCompleted {
+	background-image:url('../images/progress_background.jpg');
+	width:0px;
+	height:7px;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#pbarLeft {
+	/*background-color:#4F9AC1;*/
+	width:150px;
+	height:7px;
+	position:absolute;
+	top:0;
+	right:0;
+}
+#pbarLeftStatus, #pbarCompletedStatus {
+	text-align:center;
+	color: #333333;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight:normal;
+	z-index:100;
+	top:4px;
+}

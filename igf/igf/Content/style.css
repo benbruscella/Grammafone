@@ -1,0 +1,182 @@
+body {
+	margin: 30px auto;
+	padding: 0;
+	width: 800px;
+	color: #333333;
+}
+
+@media only screen and (max-device-width: 480px) {
+	html,body {
+		width:100% !important;
+	    margin:0 !important;
+		min-height:320px !important;
+		max-height:480px !important;
+	}
+}
+
+code {
+	font: 120% "Courier New", Courier, monospace;
+	white-space: nowrap;
+	color: #6666CC;
+}
+p {
+	margin: 0;
+	padding: 0 0 1em;
+}
+a {
+	color: #FF3300;
+}
+h1 {
+	font: bold 260%/100% Arial, Helvetica, sans-serif;
+	margin: 0 0 10px;
+	padding: 0;
+	letter-spacing: -2px;
+}
+h2 {
+	font: normal 140%/130% Arial, Helvetica, sans-serif;
+	color: #666666;
+}
+h3 {
+	font: bold 140%/130% Arial, Helvetica, sans-serif;
+	color: #000;
+	margin: 0;
+	padding: 0;
+
+}
+
+.iphone {
+	margin: 0 auto;
+	
+}
+
+.box {
+    border:2px solid #ccc;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px
+}
+
+.opacity.dark {
+    color:#fff;
+}
+
+.textshadow {
+    text-shadow: #999 0px 0px 1px;
+    /* Use only one filter for IE */
+    filter: Shadow(Color=#333333,Direction=135,Strength=1);
+}
+
+.shadow {
+    box-shadow: 0 0 3px #333;
+    -moz-box-shadow: 0 0 3px #333;
+    -webkit-box-shadow: 0 0 3px #333
+}
+
+.hide {
+    display:none;
+}
+.alignleft   { float:left }
+.alignright  { float:right }
+.aligncenter {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Under Construction! */
+/*Popup*/
+.iphone p.copypaste {
+    position:relative;
+}
+.iphone .popup {
+    position:absolute;
+    display:none;
+    z-index:200;
+}
+.iphone .popup.copypaste {
+    width:240px;
+    height:48px;
+    line-height:48px;
+    background:url('images/popup-copypaste.png') no-repeat 0 0;
+}
+
+.iphone .popup.copypaste .anchor {
+    position:absolute;
+    z-index:100;
+    bottom:-10px;
+    left:24px;
+    height:14px;
+    width:24px;
+    background:url('images/popup-copypaste-anchor.png') no-repeat 0 0;
+}
+
+.iphone .popup.copypaste ul{
+    width:100%;
+}
+.iphone .popup.copypaste li{
+    float:left;
+    font-weight:900;
+    text-shadow: #ccc 0px -1px 0px;
+    width:80px
+}
+.iphone .popup.copypaste li.separator{
+    background:url('images/popup-copypaste-separator.png') 0 0 no-repeat;
+    padding-left:1px;
+    margin-right:-1px;
+}
+.iphone .popup.copypaste li.separator a{
+    margin-right:1px;
+}
+.iphone .popup.copypaste li a{
+    color:#eee;
+    display:block;
+    text-align:center;
+}
+
+.iphone .popup.copypaste li.first a:hover{
+    background:url('images/popup-copypaste.png') no-repeat 0 -48px;
+}
+.iphone .popup.copypaste li a:hover{
+    background:url('images/popup-copypaste.png') no-repeat -32px -48px;
+}
+.iphone .popup.copypaste li.last a:hover{
+    background:url('images/popup-copypaste.png') no-repeat 100% -48px;
+}
+/*/Popup*/
+/*Buttons*/
+.iphone .button {
+    cursor:pointer;
+    font-size:1.3em;
+    font-weight:900;
+    display:block;
+    height:70px;
+    width:320px;
+    line-height:70px;
+    text-align:center;
+    text-shadow: #333 0px -1px 0px;
+    background-image:url('images/buttons.png');
+    background-repeat:no-repeat;
+}
+
+.iphone .green, .iphone .green a,
+.iphone .black, .iphone .black a,
+.iphone .red,   .iphone .red a{
+    color:#fff;
+}
+
+.iphone .button.green { background-position:0 0 }
+.iphone .button.green:active { background-position:0 -350px }
+
+.iphone .button.white { background-position:0 -70px }
+.iphone .button.white:active { background-position:0 -420px }
+
+.iphone .button.black { background-position:0 -140px }
+.iphone .button.black:active { background-position:0 -490px }
+
+.iphone .button.orange { background-position:0 -210px }
+.iphone .button.orange:active { background-position:0 -560px }
+
+.iphone .button.red { background-position:0 -280px }
+.iphone .button.red:active { background-position:0 -630px }
+/*/Buttons*/

@@ -1,0 +1,33 @@
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="prototype.js"></script>
+<script src="prototabs.js"></script>
+<script>
+	Event.observe(window,'load',function(){
+		var tabSet1 = new ProtoTabs('tabSet1',{defaultPanel:'acapulco', ajaxUrls: {							
+				cancun:'ajax.php?var=how',
+				cabo:'ajax.php?var=you'
+			}
+		});
+	});
+</script>
+
+<div class="tabs10">
+	<ul id="tabSet1">
+		<li><a href="#cancun"><span>cancun</span></a></li>
+		<li><a href="#acapulco"><span>acapulco</span></a></li>
+		<li><a href="#negril"><span>negril</span></a></li>
+		<li><a href="#cabo"><span>cabo</span></a></li>
+	</ul>
+</div>
+<div id="cancun" class="panel">
+	cancun panel
+</div>
+<div id="acapulco" class="panel">
+	acapulco panel
+</div>
+<div id="negril" class="panel">
+	A non-ajax panel.
+</div>
+<div id="cabo" class="panel">
+	cabo panel
+</div>

@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ajTunes</title>	
+	<link rel="stylesheet" href="css/ajtunes.css" type="text/css">
+	<script src="js/jquery-1.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-ui-personalized-1.6rc6.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ajtunes.noselect.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ajtunes.progressbar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ajtunes.player.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ajtunes.interface.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+	var _sm;
+	var sound;
+	var currentMp3Id = -1;
+	
+    $(document).ready(function(){
+	
+		
+		callTimeout = setTimeout(displayCurrentPosition,0);
+
+		setupProgressBar();
+
+		
+		//*************
+		// PLAYLISTS RETRIEVAL
+		//*************
+		// read the playlists
+		
+		function itemizer(mp3){
+			//var mp3 = $(this);
+			var row = $('<tr></tr>');
+			if (rowCounter%2==0){
+				row.attr("class","playlistItem evenRow");
+			}
+			else {
+				row.attr("class", "playlistItem")
+			}
+			var col1 = $('<td width="'+widths[0]+'" align="right"></td>');
+			var col1b = $('<td width="'+widths[1]+'" class="playlistCell playingIcon" align="center"></td>');
+			var col2 = $('<td width="'+widths[2]+'" class="playlistCell"></td>');
+			var col3 = $('<td width="'+widths[3]+'" class="playlistCell" align="right"></td>');
+			var col4 = $('<td width="'+widths[4]+'" class="playlistCell"></td>');
+			var col5 = $('<td width="'+widths[5]+'" class="playlistCell"></td>');
+			var col6 = $('<td width="'+widths[6]+'" class="playlistCell">&nbsp;</td>');
+			if (mp3.attr("id")==currentMp3Id){
+				col1b.html('<img src="images/ajtunes_playing.gif">');
+			}
+		
+			var itemObj = $('<div></div>');
+
+			row.attr("id","item"+mp3.attr("id"));
+			row.attr("path",mp3.attr("path"));
+			row.attr("title",mp3.attr("title"));
+			row.attr("artist",mp3.attr("artist"));
+			row.bind("click", function(){
+				tempRow = 1;
+				$(".playlistItem").each(function(){
+					if (tempRow%2==0){
+						$(this).attr("class","playlistItem evenRow");
+					}
+					else {
+						$(this).attr("class", "playlistItem")
+					}
+					tempRow++;
+				});
+				$(this).attr("class","playlistItem selectedRow");
+			});
+			row.bind("dblclick", function(){
+				currentMp3Id = mp3.attr("id");
+				$("#prev").attr({src : "images/ajtunes_prev.jpg"});
+				$("#next").attr({src : "images/ajtunes_next.jpg"});
+				$("#playstop").attr({src : "images/ajtunes_pause.jpg"});
+				$("#playstop").attr({isPlay : "false"});
+				$(".playingIcon").each(function(){
+					$(this).html('');
+				});
+				col1b.html('<img src="images/ajtunes_playing.gif">');
+				if (mp3.attr("art") && mp3.attr("art")!=""){
+					$("#nothing").hide();
+					$("#cover").attr({src : mp3.attr("art")});
+					$("#cover").show();
+				}
+				else {
+					$("#nothing").html("No Artwork");
+					$("#nothing").show();
+					$("#cover").hide();
+				}
+				
+				_sm.destroySound('currentItem');
+				clearTimeout(callTimeout);
+				_sm.createSound('currentItem',$(this).attr("path"));
+				sound = _sm.createSound({
+					id:'currentItem',
+					url:$(this).attr("path")										 
+				});
+				if ($("#slider").attr("hasBeenMoved")=="false"){
+					sound.setVolume(50);
+					$("#slider").animate({"left": "28px"});
+				}
+				else {
+					sound.setVolume(readVolumeSlider());
+				}
+				$("#logo").hide();
+				$("#pbarContainer").show();
+				$("#songTitle").html($(this).attr("title")+"<br>"+$(this).attr("artist"));
+				callTimeout = setTimeout(displayCurrentPosition,0);
+				sound.togglePause();
+		    });
+
+			
+			col1.html(rowCounter);
+			col1.appendTo(row);
+			col1b.appendTo(row);
+			col2.html(mp3.attr("title"));
+			col2.appendTo(row);
+			col3.html(mp3.attr("time"));
+			col3.appendTo(row);
+			col4.html(mp3.attr("artist"));
+			col4.appendTo(row);
+			col5.html(mp3.attr("album"));
+			col5.appendTo(row);
+			col6.appendTo(row);
+			row.appendTo('#playlistContent');	
+			rowCounter++;
+		}
+		
+		$.ajax({
+			type: "GET",
+			url: "getPlaylists.php",
+			data: "",
+			success: function(xml){
+				$(xml).find("playlist").each(function() {
+				    var playlist = $(this);
+				
+					var row = $('<tr></tr>');
+					row.attr("class","playlistTitle");
+					var playlistIcon = $('<td width="30" align="right" style="padding:3px"><img src="images/ajtunes_playlist.gif"/></td>');
+					var playlistName = $('<td valign="middle" style="padding:3px"></td>');
+					row.bind("click", function(){
+						rowCounter = 1;
+						$(".playlistTitle").each(function(){
+							$(this).attr("class","playlistTitle");
+						});
+						row.attr("class","playlistTitle selectedRow");
+
+						$('#playlistContent').empty();
+						$.ajax({
+							type: "GET",
+							url: "getPlaylist.php?id="+playlist.attr("id")+"&"+Math.random(),
+							data: "",
+							success: function(xml){
+								$(xml).find("mp3").each(function() {
+								    itemizer($(this));
+								});
+								fillWithEmptyRows();
+							}
+						});
+			
+				
+				    });
+					playlistName.html(playlist.attr("title"));
+					playlistIcon.appendTo(row);
+					playlistName.appendTo(row);
+					row.appendTo('#playlists');
+				});
+				$($(".playlistTitle")[0]).trigger('click');
+			}
+		});
+		
+		$("#libraryMusic").click(function(){
+			rowCounter = 1;
+			$(".playlistTitle").each(function(){
+				$(this).attr("class","playlistTitle");
+			});
+			$(this).attr("class","playlistTitle selectedRow");
+
+			$('#playlistContent').empty();
+			$.ajax({
+				type: "GET",
+				url: "getPlaylist.php?"+Math.random(),
+				data: "",
+				success: function(xml){
+					$(xml).find("mp3").each(function() {
+					    itemizer($(this));
+					});
+					fillWithEmptyRows();
+				}
+			});
+		});
+	
+		
+		
+		setupPlayer();
+		setupVolume();
+		setupInterface();
+		
+	});
+	</script>
+	<script type="text/javascript" src="soundmanager2.js"></script>
+	<script type="text/javascript">
+	// soundmanager configuration
+	soundManager.debugMode = false;
+	soundManager.consoleOnly = false;
+	soundManager.onload = function() {
+		_sm = soundManager;
+	}
+	</script>
+
+</head>
+<body>
+
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="topBar">
+  <tr>
+	<td background="images/ajtunes_topbar.jpg" width="50">
+	&nbsp;
+    </td>
+    <td background="images/ajtunes_topbar.jpg" width="242" align="center">
+	<table id="controls" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<img id="prev" src="images/ajtunes_prev_disabled.jpg" width="35" height="71" alt="Ajtunes Prev">
+				</td>
+				<td>
+					<img id="playstop" src="images/ajtunes_play.jpg" width="42" height="71" isPlay="true">
+				</td>
+				<td>
+					<img id="next" src="images/ajtunes_next_disabled.jpg" width="35" height="71" alt="Ajtunes Next">
+				</td>
+				<td width="30">
+					<img id="volMin" src="images/ajtunes_vol_min.jpg" width="30" height="71" alt="Ajtunes Vol Min">
+				</td>
+				<td id="volume" width="70" background="images/ajtunes_vol_bar.jpg">
+					<img id="slider" src="images/ajtunes_vol_slider.jpg" width="13" height="71" hasBeenMoved="false">
+				</td>
+				<td width="30">
+					<img id="volMax" src="images/ajtunes_vol_max.jpg" width="30" height="71" alt="Ajtunes Vol Max">
+				</td>
+			</tr>
+		</table>
+    </td>
+    <td width="11" height="71"><img src="images/ajtunes_progress_c1.jpg" width="11" height="71"></td>
+    <td background="images/ajtunes_progress_c2.jpg" valign="middle" id="progressTable" >
+	<table align="center"  cellspacing="0" cellpadding="0">
+		<tr>
+			<td id="songTitle" align="center" colspan="3" class="songTitle">
+				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="pbarCompletedStatus" align="center"></div>
+			</td>
+			<td align="center">
+				<img src="images/ajtunes_logo.jpg" id="logo">
+				<div id="pbarContainer" align="center">
+					<div id="pbarCompleted"></div>
+					<div id="pbarLeft"></div>
+				</div>
+			</td>
+			<td>
+				<div id="pbarLeftStatus" align="center"></div>
+			</td>
+		</tr>
+	</table>
+	</td>
+    <td width="11" height="71"><img src="images/ajtunes_progress_c3.jpg" width="11" height="71"></td>
+    <td background="images/ajtunes_topbar.jpg" width="200">&nbsp;</td>
+  </tr>
+</table>
+	
+	<div style="background-color:#D1D7E2;width:250px;border-right:1px solid #404040;position:absolute" valign="top" id="playlistBox">
+		<table>
+			<tr>
+				<td width="250" align="left">
+					<img src="images/ajtunes_library.jpg" width="76" height="25" alt="Ajtunes Library">
+				</td>
+			</tr>
+				<tr>
+					<td width="250" align="left">
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr id="libraryMusic" class="playlistTitle">
+								<td width="30" align="right" style="padding:3px"><img src="images/ajtunes_playlist.gif"/></td>
+								
+								<td valign="middle" style="padding:3px" >Music</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			<tr>
+				<td width="250" align="left">
+					<img src="images/ajtunes_playlists.jpg" width="76" height="25" alt="Ajtunes Playlists">
+				</td>
+			</tr>
+			<tr>
+				<td width="250" align="left">
+					<table id="playlists" width="100%" cellspacing="0" cellpadding="0" border="0">
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="playlistGridBox" style="position:absolute">
+		<table id="playlistPanel" width="100%" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+						<td class="playlistColumn" width="34" colspan="2">&nbsp;</td>
+				<td class="playlistColumn" width="200">Name</td>
+				<td class="playlistColumn" align="right" width="50">Time</td>
+				<td class="playlistColumn"  width="100">Artist</td>
+				<td class="playlistColumn"  width="100">Album</td>
+						<td class="playlistColumn" >&nbsp;</th>
+			    </tr>
+		    </thead>
+		    <tbody id="playlistContent">
+		    </tbody>
+		</table>
+	</div>
+
+	<div id="nowPlayingBox" style="background-color:#D1D7E2;height:260px;width:250px;border-right:1px solid #404040;position:absolute">
+		<table>
+			<tr>
+				<td id="nowPlaying" class="playlistColumn" width="250" align="center">
+					Now playing
+				</td>
+			</tr>
+			<tr>
+				<td width="250" height="250" align="center" valign="middle" class="nowPlaying">
+					<span id="nothing">
+						Nothing<br/>
+						Playing
+					</span>
+					<img src="" width="244" height="244" id="cover" style="display:none">
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body> 
+</html>
